@@ -3,14 +3,13 @@ package ar.com.lgp.peliculas.servicio;
 import ar.com.lgp.peliculas.datos.AccesoDatosImpl;
 import ar.com.lgp.peliculas.datos.IAccesoDatos;
 import ar.com.lgp.peliculas.domain.Pelicula;
-import ar.com.lgp.peliculas.excepciones.AccesoDatosEx;
-import ar.com.lgp.peliculas.excepciones.LecturaDatosEx;
+import ar.com.lgp.peliculas.excepciones.*;
 
 public class CatalogoPeliculasImpl implements ICatalagoPeliculas {
 
 	private final IAccesoDatos datos;
 
-	public CatalogoPeliculasImpl(IAccesoDatos datos) {
+	public CatalogoPeliculasImpl() {
 		this.datos = new AccesoDatosImpl();
 	}
 
@@ -51,6 +50,7 @@ public class CatalogoPeliculasImpl implements ICatalagoPeliculas {
 			System.out.println("Error de acceso datos");
 			ex.printStackTrace(System.out);
 		}
+		System.out.println("resultado = " + resultado);
 	}
 
 	@Override
