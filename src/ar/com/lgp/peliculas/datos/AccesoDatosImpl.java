@@ -9,7 +9,7 @@ import ar.com.lgp.peliculas.excepciones.*;
 public class AccesoDatosImpl implements IAccesoDatos {
 
 	@Override
-	public boolean existe(String nombreRecurso) throws AccesoDatosEx {
+	public boolean existe(String nombreRecurso) {
 		var archivo = new File(nombreRecurso);
 		return archivo.exists();
 	}
@@ -77,6 +77,7 @@ public class AccesoDatosImpl implements IAccesoDatos {
 				indice++;
 			}
 
+			entrada.close();
 		} catch (FileNotFoundException ex) {
 			ex.printStackTrace();
 			throw new LecturaDatosEx("Excepción al buscar películas:" + ex.getMessage());
@@ -90,12 +91,26 @@ public class AccesoDatosImpl implements IAccesoDatos {
 
 	@Override
 	public void crear(String nombreRecurso) throws AccesoDatosEx {
+		var archivo = new File(nombreRecurso);
 
+		try {
+
+			var salida = new PrintWriter(new FileWriter(archivo));
+			salida.close();
+			System.out.println("Se ha creado el archivo");
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			throw new AccesoDatosEx("Excepción al crear archivo:" + ex.getMessage());
+		}
 	}
 
 	@Override
 	public void borrar(String nombreRecurso) throws AccesoDatosEx {
+		var archivo = new File(nombreRecurso);
 
+		if (archivo.exists())
+			archivo.delete();
+		System.out.println("Se ha borrado el archivo");
 	}
 
 }
