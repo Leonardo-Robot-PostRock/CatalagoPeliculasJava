@@ -1,10 +1,6 @@
 package ar.com.lgp.peliculas.datos;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import ar.com.lgp.peliculas.domain.Pelicula;
